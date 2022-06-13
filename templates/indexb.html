@@ -1,0 +1,115 @@
+{% extends 'baseb.html' %}
+{% block title %} EBSR {% endblock title %}
+{% block body %}
+
+
+<div class="container">
+  <form action="/admin" method="POST">
+
+<!--  ===========SONG TITLE==================-->
+    <div class="mb-3 my-3">
+      <label for="title" class="form-label">Song Title</label>
+      <input type="Text" class="form-control" name="title" id="Title">
+    </div>
+
+<!--  ===========SONG ARTIST==================-->
+    <div class="row g-2">
+      <div class="col-sm-8">
+        <div class="mb-3">
+          <label for="artist" class="form-label">Artists</label>
+          <input type="Text" class="form-control" name="artist" id="Artist">
+        </div>
+      </div>
+
+
+      <!--       ===========RELEASE YEAR==================-->
+      <div class="col-sm">
+        <div class="mb-3">
+          <label for="Year" class="form-label">Release Year</label>
+          <input type="Number" class="form-control" name="year" id="Year">
+        </div>
+      </div>
+    </div>
+
+<!--  ===========MOOD==================-->
+<!--    <div class="mb-3">-->
+<!--      <label for="mood" class="form-label">Mood</label>-->
+<!--     <input type="Text" class="form-control" name="mood" id="mood">-->
+<!--    </div>-->
+
+  <div class="row mb-3">
+    <div class="col">
+      <div class="mb-3"><label for="mood">Select Mood</label>
+          <select class="form-select" id="mood" name="mood" aria-label="Default select example">
+            <option selected>---Select One---</option>
+            <option value="Sad">Sad</option>
+            <option value="Happy">Happy</option>
+            <option value="Angry">Angry</option>
+            <option value="Neutral">Neutral</option>
+            <option value="Surprise">Surprise</option>
+            <option value="Fear">Fear</option>
+          </select>
+      </div>
+    </div>
+  </div>
+
+
+  <!--    ===========LINK==================-->
+      <div class="mb-3">
+        <label for="link" class="form-label">Youtube URL</label>
+        <input type="Text" class="form-control" name="link" id="link">
+      </div>
+        <button type="submit" class="btn btn btn-dark btn-primary">Submit</button>
+  </form>
+</div>
+<br>
+
+<!--    RECOMMENDED SONGS-->
+
+<div class="container my -10">
+  <h1> Songs Database </h1>
+  <table class="table table-hover table-bordered">
+    <thead>
+    <tr>
+      <th scope="col">sno</th>
+      <th scope="col">Title</th>
+      <th scope="col">Artist</th>
+      <th scope="col">Year</th>
+      <th scope="col">Link</th>
+      <th scope="col">Mood</th>
+      <th scope="col">Action</th>
+    </tr>
+  </thead>
+
+  <tbody>{% for todo in allTodo %}
+    <tr>
+      <th scope="row">{{loop.index}}</th>
+      <td>{{todo.title}}</td>
+      <td>{{todo.artist}}</td>
+      <td>{{todo.year}}</td>
+      <td>
+        <a href="{{todo.link}}" button type="button" class="btn btn-link">{{todo.link}}</button>
+      </td>
+      <td>{{todo.mood}}</td>
+      <td>
+        <a href="/delete/{{todo.sno}}" button type="button" class="btn btn-outline-dark btn-sm mx-1 ">Delete</button>
+
+      </td>
+    </tr>{% endfor %}
+  </tbody>
+  </table>
+</div>
+
+
+
+    <!-- Optional JavaScript; choose one of the two! -->
+
+    <!-- Option 1: Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+
+    <!-- Option 2: Separate Popper and Bootstrap JS -->
+    <!--
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
+    -->
+{% endblock body %}

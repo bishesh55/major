@@ -1,0 +1,41 @@
+{%extends "base.html"%}
+
+{%block content%}
+
+<center>
+<h1 class="font-italic">
+	You capture this image
+</h1>
+
+<img src="{{url_for('static', filename='after.jpg')}}" height=40% width=40% >
+
+</body>
+
+<h2 class='text-primary'>You Are Looking <span class='text-primary font-weight-bold'> {{data}} </span> </h2>
+
+</center>
+
+  <h1> Recommended Songs </h1>
+  <table class="table table-hover table-bordered">
+    <thead>
+    <tr>
+      <th scope="col">sno</th>
+      <th scope="col">Title</th>
+      <th scope="col">Artist</th>
+      <th scope="col">Year</th>
+      <th scope="col">Link</th>
+    </tr>
+  </thead>
+
+  <tbody>{% for todo in allTodo %}
+    <tr>
+      <th scope="row">{{loop.index}}</th>
+      <td>{{todo.title}}</td>
+      <td>{{todo.artist}}</td>
+      <td>{{todo.year}}</td>
+      <td><a href="{{todo.link}}" button type="button" class="btn btn-link">{{todo.link}}</button></td>
+
+    </tr>{% endfor %}
+  </tbody>
+
+{%endblock%}
